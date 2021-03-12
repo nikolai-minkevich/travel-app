@@ -1,24 +1,54 @@
-import logo from "./logo.svg";
 import Test from "./Components/Test";
 import "./App.css";
 import CountryCard from "./Components/CountryCard";
+import CountriesList from "./Components/CountriesList";
+import TravelAppAPI from "./Utils/TravelAppAPI";
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React</a>
-          <Test />
-          <CountryCard imageURL="https://gpxies.ru/team43/usa/main.jpg" name="United States of America" capital="Washington" />
-        
-      </header>
-    </div>
-  );
+class App extends React.PureComponent {
+  constructor() {
+    super();
+    this.travelAppAPI = new TravelAppAPI();
+    this.loadData();
+  }
+
+  
+
+  state = {
+    countriesList: null,
+  };
+
+  loadData = async function () {
+    const countries = await this.travelAppAPI.getCountries();
+    /* После того, как бекенд начнет отдавать данные только по одному языку,
+     * name и capital будет принимать информацию в виде
+     * name={country.capital}
+     */
+    let countriesList = (
+      <CountriesList>
+        {countries.map((country) => {
+          return <CountryCard imageURL={country.coverURL} name={country.info[0].name} capital={country.info[0].capital} />;
+        })}
+      </CountriesList>
+    );
+
+    this.setState(
+      {
+        countriesList: countriesList,
+      },
+      console.log(this.state)
+    );
+  };
+  render() {
+    const { countriesList } = this.state;
+    return (
+      <div className="App">
+        <Test />
+        {countriesList || "Data is loading..."}
+        <Test />
+      </div>
+    );
+  }
 }
 
 export default App;
