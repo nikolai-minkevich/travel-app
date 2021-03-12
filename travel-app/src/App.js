@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import Test from "./Components/Test";
 import "./App.css";
+import CountryCard from "./Components/CountryCard";
 
 function App() {
   return (
@@ -11,9 +12,10 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
+          Learn React</a>
           <Test />
-        </a>
+          <CountryCard imageURL="https://gpxies.ru/team43/usa/main.jpg" name="United States of America" capital="Washington" />
+        
       </header>
     </div>
   );
