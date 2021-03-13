@@ -4,13 +4,6 @@ import s from "./style.module.scss";
 class CountryInfoBlock extends React.PureComponent {
   render() {
     const { countryData } = this.props;
-    console.log(
-      "imageURL",
-      countryData.coverURL,
-      countryData.name,
-      countryData.capital
-    );
-    console.log(" countryData", countryData);
     return (
       <>
         <div className={s.countryInfo_container}>
