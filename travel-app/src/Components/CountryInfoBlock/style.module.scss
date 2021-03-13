@@ -1,8 +1,8 @@
 @import "../extends.scss";
 .countryInfo_container{
   width: 80%;
-  height: 300px;
   display: flex;
+  margin-bottom: 30px;
   .countryInfo_image{
     height: 260px;
     width: 260px;
@@ -19,10 +19,6 @@
     margin: 0 40px;
     h2,h3{
       margin-bottom: 10px;
-    }
-    .countryInfo_description{
-      overflow: hidden;
-      height: 80%;
     }
   }
 }

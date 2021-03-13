@@ -5,7 +5,7 @@ import TravelAppAPI from "../../Utils/TravelAppAPI";
 import Footer from "../../Components/Footer/Footer";
 import CountryInfoBlock from "../../Components/CountryInfoBlock/CountryInfoBlock"
 import s from './CountryPage.module.scss'
-
+import CountryVideo from "../../Components/CountryVideo/CountryVideo"
 class HomePage extends React.Component {
   constructor() {
     super();
@@ -36,12 +36,19 @@ class HomePage extends React.Component {
   };
   render() {
     const { countryData } = this.state;
+console.log("countryData ",countryData );
+let countryVideoUrl = ""
+if(countryData){
+    countryVideoUrl=countryData.info.videoURL
+}
+
     return (
       <React.Fragment>
         <Header />
         {countryData.length === 0 ? "Data is loading..." : null}
         <div className={s.countryPage_container}>
         < CountryInfoBlock countryData={countryData} />
+        <CountryVideo countryVideoUrl={countryVideoUrl}/>
         </div>
         <Footer />
       </React.Fragment>
