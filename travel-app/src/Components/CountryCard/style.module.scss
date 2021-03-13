@@ -1,30 +1,48 @@
+@import "../extends.scss";
+
+
 .countryCard {
-  height          : 250px;
-  width           : 200px;
-  background-color: #C4C4C4;
-  display         : flex;
-  flex-direction  : column;
-  justify-content : space-between;
-  align-items     : center;
-  color           : black;
-  padding: 10px;
+  width: 230px;
+  height: 320px;
+
+  background-color: $colorBackground__light;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: $colorBackground_textForlight;
+  align-self: center;
+  justify-self: center;
+  border-radius: 10px;
+  .countryCard_image {
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+    background-color: #fff;
+    background-size: cover;
+    transition: height 0.5s;
+    border-radius: 10px 10px 0 0;
+  }
+  h2,
+  h3 {
+    margin-top: 1em;
+  }
+
+  transition: all 0.5s;
 }
-
-.countryCard_image {
-  height          : 180px;
-  width           : 180px;
-  overflow        : hidden;
-  background-color: #fff;
-  background-size : cover;
-}
-
-.countryCard h2 {
-  font-size  : 18px;
-  line-height: 21px;
-}
-
-.countryCard h3 {
-  font-size  : 14px;
-  line-height: 16px;
-
+.countryCard:hover {
+  cursor: pointer;
+  box-shadow: 0 0 100px rgba(0,0,0,0.2); 
+  width: 100%;
+  height: 100%;
+  .countryCard_image {
+    width: 100%;
+    height: 260px;
+    transition: height 0.5s;
+  }
+  h2,
+  h3 {
+    margin-top: 1em;
+  }
+  transition: all 0.5s;
 }

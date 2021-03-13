@@ -1,0 +1,42 @@
+@import "./components/extends.scss";
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* {
+  box-sizing: border-box;
+}
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+  color: black;
+}
+html {
+  @extend %font-stack-NotoSans;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+h2 {
+  font-size  : 18px;
+  line-height: 21px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size  : 14px;
+  line-height: 16px;
+}
+#root{
+  background: $colorBackground__lightest;
+}
