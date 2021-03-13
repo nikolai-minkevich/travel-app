@@ -5,6 +5,8 @@ import CountriesList from "./Components/CountriesList";
 import TravelAppAPI from "./Utils/TravelAppAPI";
 import React from "react";
 
+import Footer from './Components/Footer/Footer';
+
 class App extends React.PureComponent {
   constructor() {
     super();
@@ -42,11 +44,14 @@ class App extends React.PureComponent {
   render() {
     const { countriesList } = this.state;
     return (
-      <div className="App">
-        <Test />
-        {countriesList || "Data is loading..."}
-        <Test />
-      </div>
+      <React.Fragment>
+        <div className="App">
+          <Test />
+          {countriesList || "Data is loading..."}
+          <Test />
+        </div>
+        <Footer/>
+      </React.Fragment>
     );
   }
 }
