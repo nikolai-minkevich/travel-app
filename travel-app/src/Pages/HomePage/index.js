@@ -1,6 +1,5 @@
 import React from "react";
-import Test from "../../Components/Test";
-
+import Header from "../../Components/Header/Header.js"
 import CountryCard from "../../Components/CountryCard";
 import CountriesList from "../../Components/CountriesList";
 import TravelAppAPI from "../../Utils/TravelAppAPI";
@@ -41,7 +40,7 @@ class HomePage extends React.Component {
         return (
           <React.Fragment>
             <div className="App">
-              <Test />
+              <Header />
               <CountriesList>
                 {countries.length === 0 ? "Data is loading..." : null}
                 {countries.map((country, index) => {
