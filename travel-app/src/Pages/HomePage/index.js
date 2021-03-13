@@ -25,6 +25,10 @@ class HomePage extends React.Component {
       }
     
       loadData = async function () {
+        //
+        const countryData = await this.travelAppAPI.getCountry("US","ru");
+        console.log(countryData);
+        //
         const countries = await this.travelAppAPI.getCountries();
         /* После того, как бекенд начнет отдавать данные только по одному языку,
          * name и capital будет принимать информацию в виде
