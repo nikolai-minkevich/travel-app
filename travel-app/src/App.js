@@ -14,10 +14,8 @@ class App extends React.PureComponent {
     this.loadData();
   }
 
-  
-
   state = {
-    countriesList: null,
+    countries: [],
   };
 
   loadData = async function () {
@@ -26,32 +24,33 @@ class App extends React.PureComponent {
      * name и capital будет принимать информацию в виде
      * name={country.capital}
      */
-    let countriesList = (
-      <CountriesList>
-        {countries.map((country) => {
-          return <CountryCard imageURL={country.coverURL} name={country.info[0].name} capital={country.info[0].capital} />;
-        })}
-      </CountriesList>
-    );
+    // let countriesList = (
+
+    // );
 
     this.setState(
       {
-        countriesList: countriesList,
+        countries: countries,
       },
       console.log(this.state)
     );
   };
   render() {
-    const { countriesList } = this.state;
+    const { countries } = this.state;
     return (
+
       <React.Fragment>
         <div className="App">
           <Test />
-          {countriesList || "Data is loading..."}
-          <Test />
+          <CountriesList>
+          {countries.map((country) => {
+            return <CountryCard imageURL={country.coverURL} name={country.info[0].name} capital={country.info[0].capital} />;
+          }) || "Data is loading..."}
+        </CountriesList>
         </div>
         <Footer/>
       </React.Fragment>
+
     );
   }
 }
