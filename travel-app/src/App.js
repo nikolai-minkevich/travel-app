@@ -33,7 +33,6 @@ class App extends React.PureComponent {
       <React.Fragment>
         <Header />
         <div className="App">
-          <Test />
           <CountriesList>
             {countries.length === 0 ? "Data is loading..." : null}
             {countries.map((country, index) => {
