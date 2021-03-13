@@ -1,10 +1,9 @@
 .countriesList {
-  display  : flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: flex-start;
-  flex-grow: 1;
-  width    : 100vw;
-
-  
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  width    : 1200px;
+  margin: 15px auto;
+  height: calc(100% - 150px);
+  min-height: 700px;
 }

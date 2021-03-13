@@ -14,9 +14,6 @@ class TravelAppAPI {
       .then((response) => {
         return response.json();
       })
-      .then((jsonData) => {
-        return jsonData;
-      })
       .catch((error) => Error(error));
   }
 }
