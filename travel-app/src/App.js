@@ -48,7 +48,6 @@ class App extends React.PureComponent {
         <div className="App">
           <Test />
           {countriesList || "Data is loading..."}
-          <Test />
         </div>
         <Footer/>
       </React.Fragment>

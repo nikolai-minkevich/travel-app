@@ -1,14 +1,16 @@
+@import "../extends.scss";
+
 .footer {
-    width: 100vW;
+    width: 100%;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    background: #392b3c;
+    background: $colorBackground__dark;
 
     .text {        
-        color: wheat;
-        font-size: 1.5vw;    
+        color: $colorBackground_textForDark;
+  
     }
 
     .iconGit {
@@ -26,13 +28,14 @@
     
             p {
                 margin-left: 4px;
-                color: wheat;
-                font-size:1.5vw;
+                color: $colorBackground_textForDark;
+
             }
         } 
     }
 
     img {
         height: 30px;
+        filter: invert(100%)
     }
 }

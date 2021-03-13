@@ -1,3 +1,7 @@
+@import "../extends.scss";
+
 .test{
-  color:red !important
+  background-color: $colorBackground__light;
+  color:red !important;
+  height: 100px;
 }
