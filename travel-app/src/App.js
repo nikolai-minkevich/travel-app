@@ -6,6 +6,7 @@ import TravelAppAPI from "./Utils/TravelAppAPI";
 import React from "react";
 
 import Footer from './Components/Footer/Footer';
+import Header from './Components/Header/Header';
 
 class App extends React.PureComponent {
   constructor() {
@@ -45,6 +46,7 @@ class App extends React.PureComponent {
     const { countriesList } = this.state;
     return (
       <React.Fragment>
+        <Header />
         <div className="App">
           <Test />
           {countriesList || "Data is loading..."}

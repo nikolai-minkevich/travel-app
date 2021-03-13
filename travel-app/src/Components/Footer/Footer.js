@@ -9,21 +9,21 @@ const Footer = () => (
         <p className={s.text}>React Course · RS School 2021Q1 · Task 2</p>
 
         <div className={s.iconGit}>
-            <a href="https://github.com/nikolai-minkevich" target="_blank">
+            <a href="https://github.com/nikolai-minkevich" target="_blank" rel="noreferrer">
                 <img src={git} alt="git hub" />
                 <p>Nikolai</p>
             </a>
-            <a href="https://github.com/VaseninaNastya" target="_blank">
+            <a href="https://github.com/VaseninaNastya" target="_blank" rel="noreferrer">
                 <img src={git} alt="git hub" />
                 <p>Nastya</p>
             </a>
-            <a href="https://github.com/AV-63-dev" target="_blank">
+            <a href="https://github.com/AV-63-dev" target="_blank" rel="noreferrer">
                 <img src={git} alt="git hub" />
                 <p>Anatoliy</p>
             </a>
         </div>
 
-        <a href="https://community-z.com/events/react-rsschool-2021/" target="_blank">
+        <a href="https://community-z.com/events/react-rsschool-2021/" target="_blank" rel="noreferrer">
             <img src={rs} alt="rs school" />
         </a>
     </footer>
