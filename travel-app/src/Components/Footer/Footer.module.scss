@@ -1,0 +1,38 @@
+.footer {
+    width: 100vW;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: #392b3c;
+
+    .text {        
+        color: wheat;
+        font-size: 1.5vw;    
+    }
+
+    .iconGit {
+        display: flex;
+
+        a {
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+    
+            img {
+                height: 30px;
+                border-radius: 50%;
+            }
+    
+            p {
+                margin-left: 4px;
+                color: wheat;
+                font-size:1.5vw;
+            }
+        } 
+    }
+
+    img {
+        height: 30px;
+    }
+}

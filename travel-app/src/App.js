@@ -5,6 +5,8 @@ import CountriesList from "./Components/CountriesList";
 import TravelAppAPI from "./Utils/TravelAppAPI";
 import React from "react";
 
+import Footer from './Components/Footer/Footer';
+
 class App extends React.PureComponent {
   constructor() {
     super();
@@ -36,18 +38,19 @@ class App extends React.PureComponent {
   render() {
     const { countries } = this.state;
     return (
-      <div className="App">
-        <Test />
 
-        <CountriesList>
+      <React.Fragment>
+        <div className="App">
+          <Test />
+          <CountriesList>
           {countries.map((country) => {
             return <CountryCard imageURL={country.coverURL} name={country.info[0].name} capital={country.info[0].capital} />;
           }) || "Data is loading..."}
         </CountriesList>
+        </div>
+        <Footer/>
+      </React.Fragment>
 
-        {/* {countriesList || "Data is loading..."} */}
-        <Test />
-      </div>
     );
   }
 }
