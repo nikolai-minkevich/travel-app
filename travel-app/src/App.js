@@ -23,11 +23,6 @@ class App extends React.PureComponent {
 
   loadData = async function () {
     const countries = await this.travelAppAPI.getCountries();
-    /* После того, как бекенд начнет отдавать данные только по одному языку,
-     * name и capital будет принимать информацию в виде
-     * name={country.capital}
-     */
-
     this.setState({
       countries: countries,
     });
@@ -41,7 +36,7 @@ class App extends React.PureComponent {
           <CountriesList>
             {countries.length === 0 ? "Data is loading..." : null}
             {countries.map((country, index) => {
-              return <CountryCard imageURL={country.coverURL} name={country.info[0].name} capital={country.info[0].capital} key={index} />;
+              return <CountryCard imageURL={country.coverURL} name={country.name} capital={country.capital} key={index} />;
             })}
           </CountriesList>
         </div>
