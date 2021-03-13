@@ -4,8 +4,8 @@ import CountryCard from "./Components/CountryCard";
 import CountriesList from "./Components/CountriesList";
 import TravelAppAPI from "./Utils/TravelAppAPI";
 import React from "react";
-
-import Footer from "./Components/Footer/Footer";
+import Footer from './Components/Footer/Footer';
+import Header from './Components/Header/Header';
 
 class App extends React.PureComponent {
   constructor() {
@@ -31,6 +31,7 @@ class App extends React.PureComponent {
     const { countries } = this.state;
     return (
       <React.Fragment>
+        <Header />
         <div className="App">
           <Test />
           <CountriesList>
