@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import s from "./Header.module.scss";
 
 class Header extends React.PureComponent {
@@ -25,19 +25,20 @@ class Header extends React.PureComponent {
   render() {
     // const { lang = 0, value = '', home = true, func: { search, installerLang  }} = props;
     // ниже две строчки для проверки при работе раскоментируем весь пропс (строчка выше) а ниже три строки сотрем
-    const { lang = 2, value = "", home = true } = this.props;
-
+    const { lang = "en", value = "" } = this.props;
+    const { location } = this.props;
+    console.log("location", location.pathname);
     return (
       <header className={s.header}>
         <Link to="/home">
           <p className={s.text}>Travel-APP</p>
         </Link>
 
-        {home ? (
+        {location.pathname.substring(0, 5) === "/home" ? (
           <input className={s.input} value={value} onChange={this.search} type="text" placeholder="Осуществи мечту! Начни с поиска!" />
         ) : null}
 
-        <select className={s.select} onChange={this.installerLang} value={Number(lang)}>
+        <select className={s.select} onChange={this.installerLang} value={lang}>
           {this.language.map((item, index) => (
             <option value={item.code} key={index}>
               {item.title}
@@ -49,4 +50,4 @@ class Header extends React.PureComponent {
   }
 }
 
-export default Header;
+export default withRouter(Header);
