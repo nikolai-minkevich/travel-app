@@ -8,17 +8,16 @@ import CountryInfoBlock from "../../Components/CountryInfoBlock/CountryInfoBlock
 import s from "./CountryPage.module.scss";
 import CountryVideo from "../../Components/CountryVideo/CountryVideo";
 import { withRouter } from "react-router";
-import CountryWidget from "../../Components/CountryWidget/CountryWidget"
+import CountryWidget from "../../Components/CountryWidget/CountryWidget";
 
 class CountryPage extends React.Component {
-
   constructor() {
     super();
     this.travelAppAPI = new TravelAppAPI();
   }
 
   state = {
-    countryData: ""
+    countryData: "",
   };
   componentDidMount() {
     const { codeISO2 } = this.props.match.params;
@@ -35,24 +34,22 @@ class CountryPage extends React.Component {
     const { countryData } = this.state;
 
     const { switchLanguage, language } = this.props;
-    let countryVideoUrl = "";
+    let countryVideoUrl = "",
+      countryCapital = "";
     if (countryData.info) {
       countryVideoUrl = countryData.info.videoURL;
-      countryCapital=countryData.capital
+      countryCapital = countryData.capital;
     }
-
 
     return (
       <React.Fragment>
         <Header switchLanguage={switchLanguage} language={language} />
         {countryData.length === 0 ? "Data is loading..." : null}
         <div className={s.countryPage_container}>
+          <CountryInfoBlock countryData={countryData} />
+          {countryCapital ? <CountryWidget countryCapital={countryCapital} /> : null}
 
-        < CountryInfoBlock countryData={countryData} />
-        {countryCapital?<CountryWidget countryCapital={countryCapital}/>:null}
-      
-        <CountryVideo countryVideoUrl={countryVideoUrl}/>
-
+          <CountryVideo countryVideoUrl={countryVideoUrl} />
         </div>
 
         <Footer />
