@@ -50,7 +50,8 @@ if(countryData){
         {countryData.length === 0 ? "Data is loading..." : null}
         <div className={s.countryPage_container}>
         < CountryInfoBlock countryData={countryData} />
-        <CountryWidget countryCapital={countryCapital}/>
+        {countryCapital?<CountryWidget countryCapital={countryCapital}/>:null}
+        
         <CountryVideo countryVideoUrl={countryVideoUrl}/>
         </div>
 

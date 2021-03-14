@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./style.module.scss";
-import WeatherAPI from "../../Utils/WeatherAPI.js"
-
+import WeatherAPI from "../../Utils/WeatherAPI.js";
+import './owfont-regular.css'
 class CountryWidget extends React.PureComponent {
   constructor() {
     super();
@@ -17,31 +17,32 @@ class CountryWidget extends React.PureComponent {
   }
 
   loadData = async function () {
-    //
-    const weatherData = await this.weatherAPI.getWeather(this.props.countryCapital);
-    console.log("sskskkk",weatherData);
-    //
-    /* После того, как бекенд начнет отдавать данные только по одному языку,
-     * name и capital будет принимать информацию в виде
-     * name={country.capital}
-     */
+    const weatherData = await this.weatherAPI.getWeather(
+      this.props.countryCapital
+    );
 
     this.setState({
       weatherData: weatherData,
     });
   };
 
-
-
-
   render() {
-    const { countryCapital } = this.props;
-    console.log("countryCapital",countryCapital);
-    console.log("this.state.weatherData", this.state.weatherData);
-    console.log("props", this.props);
+    const { weatherData } = this.state;
+
+    console.log("weatherData", weatherData);
+    let temp,description,icon= "";
+
+    if (weatherData) {
+      temp = `${Math.floor(weatherData.main.temp)}°C`
+      description= weatherData.weather.description
+      icon =`owf-${weatherData.weather[0].id} icon owf`
+      console.log("icon",icon);
+    }
     return (
       <div className={s.countryWidget_container}>
-
+        <span>temperature: {temp}</span>
+        <span>description: {description}</span>
+        <i className ={icon}/>
       </div>
     );
   }
