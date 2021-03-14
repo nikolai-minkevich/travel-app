@@ -1,6 +1,5 @@
 import "./App.css";
 import React from "react";
-// import CountryPage from "./Pages/CountryPage/index.js"
 import HomePage from "./Pages/HomePage/index.js";
 import { BrowserRouter,Route, Switch, Redirect } from "react-router-dom";
 
