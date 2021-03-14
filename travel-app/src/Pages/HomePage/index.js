@@ -1,56 +1,73 @@
 import React from "react";
-import Header from "../../Components/Header/Header.js"
+import Header from "../../Components/Header/Header.js";
 import CountryCard from "../../Components/CountryCard";
 import CountriesList from "../../Components/CountriesList";
 import TravelAppAPI from "../../Utils/TravelAppAPI";
 
-
 import Footer from "../../Components/Footer/Footer";
-
-
+import { Link } from "react-router-dom";
 
 class HomePage extends React.Component {
   constructor() {
-      super();
-      this.travelAppAPI = new TravelAppAPI();
-    }
-  
-    state = {
-      countries: [],
-    };
-  
-    componentDidMount() {
-      this.loadData();
-    }
-  
-    loadData = async function () {
+    super();
+    this.travelAppAPI = new TravelAppAPI();
+  }
 
-      const countries = await this.travelAppAPI.getCountries();
-      /* После того, как бекенд начнет отдавать данные только по одному языку,
-       * name и capital будет принимать информацию в виде
-       * name={country.capital}
-       */
-  
-      this.setState({
-        countries: countries,
-      });
-    };
-    render() {
-      const { countries } = this.state;
-      return (
-        <React.Fragment>
+  state = {
+    countries: [],
+    language: "en",
+  };
 
-            <Header />
-            <CountriesList>
-              {countries.length === 0 ? "Data is loading..." : null}
-              {countries.map((country, index) => {
-                return <CountryCard imageURL={country.coverURL} name={country.name} capital={country.capital} key={index} />;
-              })}
-            </CountriesList>
+  componentDidUpdate() {
+    // Необходимо исправить!
+    this.loadData(this.state.language);
+  }
 
-          <Footer />
-        </React.Fragment>
-      );
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.language !== prevState.language) {
+      return {
+        language: nextProps.language,
+      };
     }
+    return null;
+  }
+
+  componentDidMount() {
+    const { language } = this.props;
+    this.loadData(language);
+    this.setState({
+      language: language,
+    });
+  }
+
+  loadData = async function (lang = "en") {
+    const countries = await this.travelAppAPI.getCountries(lang);
+    this.setState({
+      countries: countries,
+    });
+  };
+
+  render() {
+    const { countries } = this.state;
+    const { language } = this.state;
+    const { switchLanguage } = this.props;
+    return (
+      <React.Fragment>
+        <Header switchLanguage={switchLanguage} language={language} />
+        <CountriesList>
+          {countries.length === 0 ? "Data is loading..." : null}
+          {countries.map((country, index) => {
+            return (
+              <Link to={"/country/" + country.codeISO2} key={index}>
+                <CountryCard imageURL={country.coverURL} name={country.name} capital={country.capital} codeISO2={country.codeISO2} />
+              </Link>
+            );
+          })}
+        </CountriesList>
+
+        <Footer />
+      </React.Fragment>
+    );
+  }
 }
 export default HomePage;
