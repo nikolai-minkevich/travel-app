@@ -34,7 +34,8 @@ class CountryWidget extends React.PureComponent {
 
     if (weatherData) {
       temp = `${Math.floor(weatherData.main.temp)}°C`
-      description= weatherData.weather.description
+      description= weatherData.weather[0].description
+      console.log("description",description);
       icon =`owf-${weatherData.weather[0].id} icon owf`
       console.log("icon",icon);
     }
