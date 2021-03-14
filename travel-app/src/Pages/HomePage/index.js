@@ -18,15 +18,17 @@ class HomePage extends React.Component {
   };
 
   componentDidMount() {
-    this.loadData();
+    const { language } = this.props;
+    this.loadData(language);
   }
 
-  loadData = async function () {
-    const countries = await this.travelAppAPI.getCountries();
+  loadData = async function (lang="en") {
+    const countries = await this.travelAppAPI.getCountries(lang);
     this.setState({
       countries: countries,
     });
   };
+  
 
   render() {
     const { countries } = this.state;

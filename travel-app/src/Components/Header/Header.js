@@ -5,7 +5,7 @@ import s from "./Header.module.scss";
 class Header extends React.PureComponent {
   constructor() {
     super();
-    this.language = [
+    this.languages = [
       { title: "English", code: "en" },
       { title: "Русский", code: "ru" },
       { title: "Français", code: "fr" },
@@ -22,6 +22,7 @@ class Header extends React.PureComponent {
   };
 
   // lang должен иметь значение 0, 1, 2 в соответствии с language
+  // значения lang приведены в соответствие с БД
   render() {
     // const { lang = 0, value = '', home = true, func: { search, installerLang  }} = props;
     // ниже две строчки для проверки при работе раскоментируем весь пропс (строчка выше) а ниже три строки сотрем
@@ -39,7 +40,7 @@ class Header extends React.PureComponent {
         ) : null}
 
         <select className={s.select} onChange={this.installerLang} value={lang}>
-          {this.language.map((item, index) => (
+          {this.languages.map((item, index) => (
             <option value={item.code} key={index}>
               {item.title}
             </option>

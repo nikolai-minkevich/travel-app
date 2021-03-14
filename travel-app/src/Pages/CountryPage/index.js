@@ -18,9 +18,9 @@ class CountryPage extends React.Component {
   };
 
   componentDidMount() {
-    const codeISO2 = this.props.match.params.codeISO2;
-
-    this.loadData(codeISO2);
+    const { codeISO2 } = this.props.match.params;
+    const { language } = this.props;
+    this.loadData(codeISO2, language);
   }
 
   loadData = async function (codeISO2, lang = "en") {
@@ -31,6 +31,7 @@ class CountryPage extends React.Component {
   };
   render() {
     const { countryData } = this.state;
+
     console.log("countryData ", countryData);
     let countryVideoUrl = "";
     if (countryData) {
