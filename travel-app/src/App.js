@@ -1,7 +1,8 @@
 import "./App.css";
 import React from "react";
 import HomePage from "./Pages/HomePage/index.js";
-import { BrowserRouter,Route, Switch, Redirect } from "react-router-dom";
+import CountryPage from "./Pages/CountryPage/index.js";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 class App extends React.PureComponent {
   render() {
@@ -11,6 +12,7 @@ class App extends React.PureComponent {
       <BrowserRouter>
         <Switch>
           <Route history={history} path="/home" component={HomePage} />
+          <Route history={history} path="/country/:codeISO2" component={CountryPage} />
           <Redirect from="/" to="/home" />
         </Switch>
       </BrowserRouter>
