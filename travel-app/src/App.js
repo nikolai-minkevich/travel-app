@@ -8,23 +8,34 @@ class App extends React.PureComponent {
   constructor() {
     super();
     this.languageSwitcher = new LanguageSwitcher();
-    console.log(this.languageSwitcher);
     this.state = {
       language: this.languageSwitcher.get(),
     };
   }
 
+  switchLanguage = (event) => {
+    this.languageSwitcher.set(event.target.value);
+    this.setState({
+      language: this.languageSwitcher.get(),
+    });
+  }
+
   render() {
     const { history } = this.props;
-
+    const { language } = this.state;
+    console.log('language',language);
     return (
       <BrowserRouter>
         <Switch>
-          <Route history={history} path="/home" render={(props) => <HomePage {...props} language={this.state.language} />} />
+          <Route
+            history={history}
+            path="/home"
+            render={(props) => <HomePage {...props} language={language} switchLanguage={this.switchLanguage} />}
+          />
           <Route
             history={history}
             path="/country/:codeISO2"
-            render={(props) => <CountryPage {...props} language={this.state.language} />}
+            render={(props) => <CountryPage {...props} language={language} switchLanguage={this.switchLanguage} />}
           />
           <Redirect from="/" to="/home" />
         </Switch>

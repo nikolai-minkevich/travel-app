@@ -14,15 +14,13 @@ class CountryPage extends React.Component {
   }
 
   state = {
-    countryData: "",
+    countryData: ""
   };
-
   componentDidMount() {
     const { codeISO2 } = this.props.match.params;
     const { language } = this.props;
     this.loadData(codeISO2, language);
   }
-
   loadData = async function (codeISO2, lang = "en") {
     const countryData = await this.travelAppAPI.getCountry(codeISO2, lang);
     this.setState({
@@ -31,16 +29,15 @@ class CountryPage extends React.Component {
   };
   render() {
     const { countryData } = this.state;
-
-    console.log("countryData ", countryData);
+    const { switchLanguage, language } = this.props;
     let countryVideoUrl = "";
-    if (countryData) {
+    if (countryData.info) {
       countryVideoUrl = countryData.info.videoURL;
     }
 
     return (
       <React.Fragment>
-        <Header />
+        <Header switchLanguage={switchLanguage} language={language} />
         {countryData.length === 0 ? "Data is loading..." : null}
         <div className={s.countryPage_container}>
           <CountryInfoBlock countryData={countryData} />

@@ -15,26 +15,45 @@ class HomePage extends React.Component {
 
   state = {
     countries: [],
+    language: "en",
   };
+
+  componentDidUpdate() {
+    // Необходимо исправить!
+    this.loadData(this.state.language);
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.language !== prevState.language) {
+      return {
+        language: nextProps.language,
+      };
+    }
+    return null;
+  }
 
   componentDidMount() {
     const { language } = this.props;
     this.loadData(language);
+    this.setState({
+      language: language,
+    });
   }
 
-  loadData = async function (lang="en") {
+  loadData = async function (lang = "en") {
     const countries = await this.travelAppAPI.getCountries(lang);
     this.setState({
       countries: countries,
     });
   };
-  
 
   render() {
     const { countries } = this.state;
+    const { language } = this.state;
+    const { switchLanguage } = this.props;
     return (
       <React.Fragment>
-        <Header/>
+        <Header switchLanguage={switchLanguage} language={language} />
         <CountriesList>
           {countries.length === 0 ? "Data is loading..." : null}
           {countries.map((country, index) => {
