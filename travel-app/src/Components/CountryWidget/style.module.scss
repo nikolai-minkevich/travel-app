@@ -1,0 +1,13 @@
+@import "../extends.scss";
+
+
+.countryWidget_container{
+  height: 150px;
+  width: 20%;
+  background-color: $colorBackground__light;
+  display: flex;
+  flex-direction: column;
+}
+.weather_icon{
+  font-size: 30px;
+}
