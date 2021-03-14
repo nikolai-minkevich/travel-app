@@ -32,19 +32,13 @@ class HomePage extends React.Component {
     const { countries } = this.state;
     return (
       <React.Fragment>
-        <Header />
+        <Header/>
         <CountriesList>
           {countries.length === 0 ? "Data is loading..." : null}
           {countries.map((country, index) => {
             return (
-              <Link to={"/country/" + country.codeISO2}>
-                <CountryCard
-                  imageURL={country.coverURL}
-                  name={country.name}
-                  capital={country.capital}
-                  key={index}
-                  codeISO2={country.codeISO2}
-                />
+              <Link to={"/country/" + country.codeISO2} key={index}>
+                <CountryCard imageURL={country.coverURL} name={country.name} capital={country.capital} codeISO2={country.codeISO2} />
               </Link>
             );
           })}
