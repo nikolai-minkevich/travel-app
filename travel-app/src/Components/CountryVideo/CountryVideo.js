@@ -5,14 +5,14 @@ class CountryVideo extends React.PureComponent {
   render() {
     const { countryVideoUrl } = this.props;
     return (
-      <iframe
-      className ={s.video}
-        src={countryVideoUrl}
-        frameBorder="0"
-        allow="autoplay; encrypted-media"
-        allowFullScreen
-        title="video"
-      />
+      <>
+        <iframe
+          src={countryVideoUrl}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </>
     );
   }
 }

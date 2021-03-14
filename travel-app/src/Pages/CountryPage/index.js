@@ -6,6 +6,7 @@ import Footer from "../../Components/Footer/Footer";
 import CountryInfoBlock from "../../Components/CountryInfoBlock/CountryInfoBlock"
 import s from './CountryPage.module.scss'
 import CountryVideo from "../../Components/CountryVideo/CountryVideo"
+import CountryWidget from "../../Components/CountryWidget/CountryWidget"
 class HomePage extends React.Component {
   constructor() {
     super();
@@ -38,18 +39,21 @@ class HomePage extends React.Component {
     const { countryData } = this.state;
 console.log("countryData ",countryData );
 let countryVideoUrl = ""
+let countryCapital = ""
 if(countryData){
     countryVideoUrl=countryData.info.videoURL
+    countryCapital=countryData.capital
 }
-
     return (
       <React.Fragment>
         <Header />
         {countryData.length === 0 ? "Data is loading..." : null}
         <div className={s.countryPage_container}>
         < CountryInfoBlock countryData={countryData} />
+        <CountryWidget countryCapital={countryCapital}/>
         <CountryVideo countryVideoUrl={countryVideoUrl}/>
         </div>
+
         <Footer />
       </React.Fragment>
     );
