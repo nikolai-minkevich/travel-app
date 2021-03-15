@@ -1,11 +1,6 @@
 import React from "react";
 import { YMaps, Map, Placemark } from "react-yandex-maps";
 
-const mapState = {
-  center: [48.704272, 65.60203],
-  zoom: 4,
-};
-
 const COLOR = "#FF0000";
 
 function MapComponent(props) {
@@ -15,6 +10,8 @@ function MapComponent(props) {
     if (mapRef && mapRef.current) {
       var objectManager = new ymaps.ObjectManager();
       ymaps.borders
+        // 001 is Global ID
+        // https://yandex.ru/dev/maps/jsbox/2.1/regions/
         .load("001", {
           lang: props.language,
           quality: 2,
@@ -33,7 +30,6 @@ function MapComponent(props) {
             return acc;
           }, {});
           let region = regions[props.codeISO2];
-          console.log(region);
           region.options.fillColor = COLOR;
           // Добавим регионы на карту.
           result.features = [];
@@ -43,8 +39,6 @@ function MapComponent(props) {
         });
     }
   };
-
-  console.log(props.capitalCoordinates);
 
   return (
     <div className="App">
