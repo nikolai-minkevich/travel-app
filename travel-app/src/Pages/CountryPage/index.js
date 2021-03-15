@@ -18,11 +18,26 @@ class CountryPage extends React.Component {
 
   state = {
     countryData: "",
+    language: "en",
   };
   componentDidMount() {
     const { codeISO2 } = this.props.match.params;
     const { language } = this.props;
     this.loadData(codeISO2, language);
+  }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.language !== prevState.language) {
+      return {
+        language: nextProps.language,
+      };
+    }
+    return null;
+  }
+  componentDidUpdate(prevProps, prevState) {
+    const { codeISO2 } = this.props.match.params;
+    if (prevState.language !== this.state.language) {
+      this.loadData(codeISO2, this.state.language);
+    }
   }
   loadData = async function (codeISO2, lang = "en") {
     const countryData = await this.travelAppAPI.getCountry(codeISO2, lang);
@@ -32,22 +47,20 @@ class CountryPage extends React.Component {
     });
   };
   render() {
-    const { countryData } = this.state;
-    const { videoURL, capital, capitalCoordinates, attractions } = countryData;
+    const { countryData, language } = this.state;
+    const { videoURL, capital /*capitalCoordinates, attractions*/ } = countryData;
 
-    const { switchLanguage, language } = this.props;
+    const { switchLanguage } = this.props;
 
     return (
       <React.Fragment>
         <Header switchLanguage={switchLanguage} language={language} />
         {countryData.length === 0 ? "Data is loading..." : null}
         <div className={s.countryPage_container}>
-          <CountryInfoBlock countryData={countryData} />
+          {countryData ? <CountryInfoBlock countryData={countryData} /> : null}
           {capital ? <CountryWidget countryCapital={capital} /> : null}
-
-          <CountryVideo countryVideoUrl={videoURL} />
+          {videoURL ? <CountryVideo countryVideoUrl={videoURL} /> : null}
         </div>
-
         <Footer />
       </React.Fragment>
     );
