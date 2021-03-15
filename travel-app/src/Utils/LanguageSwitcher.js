@@ -18,7 +18,7 @@ export class LanguageSwitcher {
     localStorage.setItem(STORAGE_VARIABLE_NAME, this.language);
     return this.get();
   }
-  set(newLanguage) {
+  set(newLanguage) { 
     if (!LANGUAGES.includes(newLanguage)) {
       return this.get();
     }
