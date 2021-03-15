@@ -2,9 +2,9 @@ export default search = (arr, val) => arr.filter(i => i.name.includes(val) || i.
 
 // структура item arr с бэка (стэйта)
 // 
-// id: "604cf96e419863398c18b4e4",
-// name: "United States of America",
-// capital: "Washington",
-// coverURL: "https://gpxies.ru/team43/usa/main.jpg",
+// name: "Турция",
+// capital: "Анкара",
+// codeISO2: "TR",
+// coverURL: "https://gpxies.ru/team43/turkey/main.jpg"
 
 // при использовании аргумент arr передаем не сам стэйт а его копию .concat() !!!
