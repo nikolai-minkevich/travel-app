@@ -4,6 +4,7 @@ import s from "./style.module.scss";
 class CountryTimer extends React.PureComponent {
   state = {
     day: "",
+    date: "",
     month: "",
     hour: "",
     min: "",
@@ -18,10 +19,12 @@ class CountryTimer extends React.PureComponent {
     let monthStr = today.toLocaleString(locale, { month: "long" });
     let dayStr = today.toLocaleString(locale, { weekday: "long" });
     let hour = today.getHours(),
+    datestr = today.getDate(),
       min = today.getMinutes(),
       sec = today.getSeconds();
     this.setState({
       day: dayStr,
+      date: datestr,
       month: monthStr,
       hour: hour,
       min: min,
@@ -35,11 +38,11 @@ class CountryTimer extends React.PureComponent {
     setInterval(this.showTime, 1000);
   }
   render() {
-    const { day, month, hour, min, sec } = this.state;
+    const { day,date, month, hour, min, sec } = this.state;
     return (
       <>
         <span className={s.CountryTimer}>{day}</span>
-        <span className={s.CountryTimer}>{month}</span>
+        <span className={s.CountryTimer}>{date} {month}</span>
         <span className={s.CountryTimer}>
           {hour}
           <span>:</span>
