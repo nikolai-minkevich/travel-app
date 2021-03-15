@@ -69,6 +69,8 @@ class HomePage extends React.Component {
                   <CountryCard imageURL={country.coverURL} name={country.name} capital={country.capital} codeISO2={country.codeISO2} />
                 </Link>
               );
+            } else {
+              return country;
             }
           })}
         </CountriesList>
