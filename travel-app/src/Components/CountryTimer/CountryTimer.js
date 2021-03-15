@@ -1,6 +1,5 @@
 import React from "react";
 
-
 class CountryTimer extends React.PureComponent {
   state = {
     day: "",
@@ -19,7 +18,7 @@ class CountryTimer extends React.PureComponent {
     let monthStr = today.toLocaleString(locale, { month: "long" });
     let dayStr = today.toLocaleString(locale, { weekday: "long" });
     let hour = today.getHours(),
-    datestr = today.getDate(),
+      datestr = today.getDate(),
       min = today.getMinutes(),
       sec = today.getSeconds();
     this.setState({
@@ -35,14 +34,16 @@ class CountryTimer extends React.PureComponent {
     return (parseInt(n, 10) < 10 ? "0" : "") + n;
   }
   componentDidMount() {
-    setInterval(this.showTime, 1000);
+    this.interval = setInterval(this.showTime, 1000);
   }
   render() {
-    const { day,date, month, hour, min, sec } = this.state;
+    const { day, date, month, hour, min, sec } = this.state;
     return (
       <>
         <span>{day}</span>
-        <span>{date} {month}</span>
+        <span>
+          {date} {month}
+        </span>
         <span>
           {hour}
           <span>:</span>
@@ -50,9 +51,11 @@ class CountryTimer extends React.PureComponent {
           <span>:</span>
           {this.addZero(sec)}
         </span>
-        
       </>
     );
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 }
 

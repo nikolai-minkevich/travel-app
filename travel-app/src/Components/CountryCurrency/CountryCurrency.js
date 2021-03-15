@@ -15,7 +15,7 @@ class CountryCurrency extends React.PureComponent {
   loadData = async function () {
     const { currency } = this.props;
     const currencyData = await this.currencyAPI.getCurrency(currency);
-    console.log("weatherData",currencyData.conversion_rates);
+
     this.setState({
       currencyData: currencyData.conversion_rates
     });
