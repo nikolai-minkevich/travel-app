@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./style.module.scss";
+
 
 class CountryTimer extends React.PureComponent {
   state = {
@@ -41,9 +41,9 @@ class CountryTimer extends React.PureComponent {
     const { day,date, month, hour, min, sec } = this.state;
     return (
       <>
-        <span className={s.CountryTimer}>{day}</span>
-        <span className={s.CountryTimer}>{date} {month}</span>
-        <span className={s.CountryTimer}>
+        <span>{day}</span>
+        <span>{date} {month}</span>
+        <span>
           {hour}
           <span>:</span>
           {this.addZero(min)}
