@@ -23,7 +23,6 @@ class App extends React.PureComponent {
   render() {
     const { history } = this.props;
     const { language } = this.state;
-    console.log('language',language);
     return (
       <BrowserRouter>
         <Switch>

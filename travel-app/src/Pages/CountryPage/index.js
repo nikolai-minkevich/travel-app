@@ -41,14 +41,14 @@ class CountryPage extends React.Component {
   }
   loadData = async function (codeISO2, lang = "en") {
     const countryData = await this.travelAppAPI.getCountry(codeISO2, lang);
-    console.log("countryData", countryData);
     this.setState({
       countryData: countryData,
     });
   };
   render() {
     const { countryData, language } = this.state;
-    const { videoURL, capital /*capitalCoordinates, attractions*/ } = countryData;
+
+    const { videoURL, capital,timeZone /*capitalCoordinates, attractions*/ } = countryData;
 
     const { switchLanguage } = this.props;
 
@@ -58,7 +58,7 @@ class CountryPage extends React.Component {
         {countryData.length === 0 ? "Data is loading..." : null}
         <div className={s.countryPage_container}>
           {countryData ? <CountryInfoBlock countryData={countryData} /> : null}
-          {capital ? <CountryWidget countryCapital={capital} /> : null}
+          {capital && timeZone ? <CountryWidget language={language} timezone={timeZone} countryCapital={capital} /> : null}
           {videoURL ? <CountryVideo countryVideoUrl={videoURL} /> : null}
         </div>
         <Footer />

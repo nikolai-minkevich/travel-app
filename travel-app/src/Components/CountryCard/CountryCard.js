@@ -3,7 +3,6 @@ import s from "./style.module.scss";
 
 class CountryCard extends React.PureComponent {
   render() {
-    console.log("reend card");
     const { imageURL, name, capital } = this.props;
     return (
       <div className={s.countryCard}>

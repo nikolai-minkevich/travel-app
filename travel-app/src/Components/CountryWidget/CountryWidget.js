@@ -1,7 +1,8 @@
 import React from "react";
 import s from "./style.module.scss";
 import WeatherAPI from "../../Utils/WeatherAPI.js";
-import './owfont-regular.css'
+import CountryTimer from "../CountryTimer/CountryTimer.js";
+import "./owfont-regular.css";
 class CountryWidget extends React.PureComponent {
   constructor() {
     super();
@@ -9,31 +10,51 @@ class CountryWidget extends React.PureComponent {
   }
   state = {
     weatherData: "",
+    lang: ""
   };
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.language !== prevState.language) {
+      return {
+        language: nextProps.language,
+      };
+    }
+    return null;
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.language !== this.state.language) {
+      this.loadData();
+    }
+  }
   componentDidMount() {
     this.loadData();
   }
   loadData = async function () {
+    const {countryCapital} = this.props
+    const { language} = this.state
     const weatherData = await this.weatherAPI.getWeather(
-      this.props.countryCapital
+      countryCapital, language
     );
     this.setState({
-      weatherData: weatherData,
+      weatherData: weatherData
     });
   };
   render() {
+    const { language, timezone } = this.props;
     const { weatherData } = this.state;
-    let temp,description,icon= "";
+    let temp,
+      description,
+      icon = "";
     if (weatherData) {
-      temp = `${Math.floor(weatherData.main.temp)}°C`
-      description= weatherData.weather[0].description
-      icon =`owf-${weatherData.weather[0].id} owf`
+      temp = `${Math.floor(weatherData.main.temp)}°C`;
+      description = weatherData.weather[0].description;
+      icon = `owf-${weatherData.weather[0].id} owf`;
     }
     return (
       <div className={s.countryWidget_container}>
-        <span>temperature: {temp}</span>
-        <span>description: {description}</span>
-        <i className ={icon}/>
+        <span> {temp}</span>
+        <span> {description}</span>
+        <i className={icon} />
+        <CountryTimer language={language} timezone={timezone} />
       </div>
     );
   }
