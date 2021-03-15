@@ -70,7 +70,7 @@ class HomePage extends React.Component {
                 </Link>
               );
             } else {
-              return country;
+              return null;
             }
           })}
         </CountriesList>
