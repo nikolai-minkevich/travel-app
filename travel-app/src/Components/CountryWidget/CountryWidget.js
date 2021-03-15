@@ -29,15 +29,15 @@ class CountryWidget extends React.PureComponent {
   render() {
     const { weatherData } = this.state;
 
-    console.log("weatherData", weatherData);
+    // console.log("weatherData", weatherData);
     let temp,description,icon= "";
 
     if (weatherData) {
       temp = `${Math.floor(weatherData.main.temp)}°C`
       description= weatherData.weather[0].description
-      console.log("description",description);
+      // console.log("description",description);
       icon =`owf-${weatherData.weather[0].id} owf`
-      console.log("icon",icon);
+      // console.log("icon",icon);
     }
     return (
       <div className={s.countryWidget_container}>

@@ -39,7 +39,6 @@ class CountryPage extends React.Component {
   }
   loadData = async function (codeISO2, lang = "en") {
     const countryData = await this.travelAppAPI.getCountry(codeISO2, lang);
-    console.log("countryData", countryData);
     this.setState({
       countryData: countryData,
     });
