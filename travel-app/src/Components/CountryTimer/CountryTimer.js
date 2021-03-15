@@ -1,9 +1,9 @@
 import React from "react";
-import s from "./style.module.scss";
 
 class CountryTimer extends React.PureComponent {
   state = {
     day: "",
+    date: "",
     month: "",
     hour: "",
     min: "",
@@ -18,10 +18,12 @@ class CountryTimer extends React.PureComponent {
     let monthStr = today.toLocaleString(locale, { month: "long" });
     let dayStr = today.toLocaleString(locale, { weekday: "long" });
     let hour = today.getHours(),
+      datestr = today.getDate(),
       min = today.getMinutes(),
       sec = today.getSeconds();
     this.setState({
       day: dayStr,
+      date: datestr,
       month: monthStr,
       hour: hour,
       min: min,
@@ -32,24 +34,28 @@ class CountryTimer extends React.PureComponent {
     return (parseInt(n, 10) < 10 ? "0" : "") + n;
   }
   componentDidMount() {
-    setInterval(this.showTime, 1000);
+    this.interval = setInterval(this.showTime, 1000);
   }
   render() {
-    const { day, month, hour, min, sec } = this.state;
+    const { day, date, month, hour, min, sec } = this.state;
     return (
       <>
-        <span className={s.CountryTimer}>{day}</span>
-        <span className={s.CountryTimer}>{month}</span>
-        <span className={s.CountryTimer}>
+        <span>{day}</span>
+        <span>
+          {date} {month}
+        </span>
+        <span>
           {hour}
           <span>:</span>
           {this.addZero(min)}
           <span>:</span>
           {this.addZero(sec)}
         </span>
-        
       </>
     );
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 }
 

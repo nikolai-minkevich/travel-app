@@ -46,8 +46,7 @@ class CountryPage extends React.Component {
   };
   render() {
     const { countryData, language } = this.state;
-    const { videoURL, capital, timeZone, capitalCoordinates, codeISO2 /* attractions*/ } = countryData;
-    console.log(capitalCoordinates);
+    const { videoURL, capital, timeZone, capitalCoordinates, codeISO2, currency /* attractions*/ } = countryData;
     const { switchLanguage } = this.props;
 
     return (
@@ -56,7 +55,7 @@ class CountryPage extends React.Component {
         {countryData.length === 0 ? "Data is loading..." : null}
         <div className={s.countryPage_container}>
           {countryData ? <CountryInfoBlock countryData={countryData} /> : null}
-          {capital && timeZone ? <CountryWidget language={language} timezone={timeZone} countryCapital={capital} /> : null}
+          {capital && timeZone && currency? <CountryWidget language={language} timezone={timeZone} countryCapital={capital} currency={currency} /> : null}
           {videoURL ? <CountryVideo countryVideoUrl={videoURL} /> : null}
           {capitalCoordinates ? (
             <MapComponent capitalCoordinates={[capitalCoordinates.lat, capitalCoordinates.lon]} language={language} codeISO2={codeISO2} />
