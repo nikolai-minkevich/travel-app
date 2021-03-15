@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.79adf630.chunk.css",
+    "main.js": "/static/js/main.c74e9de6.chunk.js",
+    "main.js.map": "/static/js/main.c74e9de6.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.343f9fed.js",
+    "runtime-main.js.map": "/static/js/runtime-main.343f9fed.js.map",
+    "static/js/2.aa244978.chunk.js": "/static/js/2.aa244978.chunk.js",
+    "static/js/2.aa244978.chunk.js.map": "/static/js/2.aa244978.chunk.js.map",
+    "static/js/3.8d78a32a.chunk.js": "/static/js/3.8d78a32a.chunk.js",
+    "static/js/3.8d78a32a.chunk.js.map": "/static/js/3.8d78a32a.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.79adf630.chunk.css.map": "/static/css/main.79adf630.chunk.css.map",
+    "static/js/2.aa244978.chunk.js.LICENSE.txt": "/static/js/2.aa244978.chunk.js.LICENSE.txt",
+    "static/media/git.fb8c5597.jpg": "/static/media/git.fb8c5597.jpg",
+    "static/media/logo.bc18f908.png": "/static/media/logo.bc18f908.png",
+    "static/media/owfont-regular.css": "/static/media/owfont-regular.77585afb.eot"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.343f9fed.js",
+    "static/js/2.aa244978.chunk.js",
+    "static/css/main.79adf630.chunk.css",
+    "static/js/main.c74e9de6.chunk.js"
+  ]
+}
