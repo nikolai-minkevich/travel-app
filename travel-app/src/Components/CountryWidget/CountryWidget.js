@@ -2,6 +2,7 @@ import React from "react";
 import s from "./style.module.scss";
 import WeatherAPI from "../../Utils/WeatherAPI.js";
 import CountryTimer from "../CountryTimer/CountryTimer.js";
+import CountryCurrency from "../CountryCurrency/CountryCurrency.js"
 import "./owfont-regular.css";
 class CountryWidget extends React.PureComponent {
   constructor() {
@@ -39,7 +40,7 @@ class CountryWidget extends React.PureComponent {
     });
   };
   render() {
-    const { language, timezone } = this.props;
+    const { language, timezone, currency } = this.props;
     const { weatherData } = this.state;
     let temp,
       description,
@@ -56,6 +57,7 @@ class CountryWidget extends React.PureComponent {
         <span> {description}</span>
         <i className={icon} />
         <CountryTimer language={language} timezone={timezone} />
+        <CountryCurrency currency = {currency}/>
       </div>
     );
   }
