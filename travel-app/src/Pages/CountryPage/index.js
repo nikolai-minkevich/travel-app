@@ -1,9 +1,7 @@
 import React from "react";
 import Header from "../../Components/Header/Header.js";
-
 import TravelAppAPI from "../../Utils/TravelAppAPI";
 import Footer from "../../Components/Footer/Footer";
-
 import CountryInfoBlock from "../../Components/CountryInfoBlock/CountryInfoBlock";
 import s from "./CountryPage.module.scss";
 import CountryVideo from "../../Components/CountryVideo/CountryVideo";

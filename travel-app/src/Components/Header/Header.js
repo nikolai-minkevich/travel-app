@@ -16,17 +16,17 @@ class Header extends React.PureComponent {
     this.value = this.props.value;
   }
 
-  installerLang = (event) => console.log(event.target.value);
-  search = (event) => {
-    this.value += event.target.value;
-  };
+//   installerLang = (event) => console.log(event.target.value);
+//   search = (event) => {
+//     this.value += event.target.value;
+//   };
 
   // lang должен иметь значение 0, 1, 2 в соответствии с language
   // значения lang приведены в соответствие с БД
   render() {
     // const { lang = 0, value = '', home = true, func: { search, installerLang  }} = props;
     // ниже две строчки для проверки при работе раскоментируем весь пропс (строчка выше) а ниже три строки сотрем
-    const { switchLanguage } = this.props;
+    const { switchLanguage, func } = this.props;
     let { language = "en", searchText = "" } = this.props;
     const { location } = this.props;
     return (
@@ -36,7 +36,7 @@ class Header extends React.PureComponent {
         </Link>
 
         {location.pathname.substring(0, 5) === "/home" ? (
-          <input className={s.input} value={searchText} onChange={this.search} type="text" placeholder="Осуществи мечту! Начни с поиска!" />
+          <input className={s.input}  onChange={func.search} type="text" placeholder="Осуществи мечту! Начни с поиска!" />
         ) : null}
 
         <select className={s.select} onChange={switchLanguage} value={language}>
