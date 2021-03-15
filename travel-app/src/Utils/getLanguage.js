@@ -1,4 +1,4 @@
-class getLanguage {
+class GetLanguage {
     STORAGE_VARIABLE_NAME = "travelApp43_language";
     DEFAULT_LANGUAGE_CODE = 0;
 
@@ -11,7 +11,7 @@ class getLanguage {
     set = lang => localStorage.setItem(this.STORAGE_VARIABLE_NAME, lang);
 }
 
-export default getLanguage
+export default GetLanguage
 
 // lang должен иметь значение 0, 1, 2 в соответствии с 
 // LANGUAGE = ["en", "ru", "fr"];

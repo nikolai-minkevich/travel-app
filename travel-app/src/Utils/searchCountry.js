@@ -1,5 +1,5 @@
-export default search = (arr, val) => arr.filter(i => i.name.includes(val) || i.capital.includes(val));
-
+const searchCountry = (arr, val) => arr.filter(i => i.name.toLowerCase().includes(val.toLowerCase()) || i.capital.toLowerCase().includes(val.toLowerCase()));
+export default searchCountry
 // структура item arr с бэка (стэйта)
 // 
 // name: "Турция",
