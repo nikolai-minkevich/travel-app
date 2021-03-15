@@ -18,11 +18,6 @@ class HomePage extends React.Component {
     language: "en",
   };
 
-  componentDidUpdate() {
-    // Необходимо исправить!
-    this.loadData(this.state.language);
-  }
-
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.language !== prevState.language) {
       return {
@@ -32,6 +27,11 @@ class HomePage extends React.Component {
     return null;
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.language !== this.state.language) {
+      this.loadData(this.state.language);
+    }
+  }
   componentDidMount() {
     const { language } = this.props;
     this.loadData(language);
@@ -48,8 +48,7 @@ class HomePage extends React.Component {
   };
 
   render() {
-    const { countries } = this.state;
-    const { language } = this.state;
+    const { countries, language } = this.state;
     const { switchLanguage } = this.props;
     return (
       <React.Fragment>
