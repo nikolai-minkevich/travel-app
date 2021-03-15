@@ -3,7 +3,7 @@ import Header from "../../Components/Header/Header.js";
 import CountryCard from "../../Components/CountryCard";
 import CountriesList from "../../Components/CountriesList";
 import TravelAppAPI from "../../Utils/TravelAppAPI";
-
+import searchCountry from "../../Utils/searchCountry";
 import Footer from "../../Components/Footer/Footer";
 import { Link } from "react-router-dom";
 
@@ -16,6 +16,13 @@ class HomePage extends React.Component {
   state = {
     countries: [],
     language: "en",
+  };
+  search = (event) => {
+    //if (event.target.value) {
+    const data = this.state.countries.concat();
+    const dataSearch = searchCountry(data, event.target.value);
+    this.setState({ countries: dataSearch });
+    //}
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -52,15 +59,17 @@ class HomePage extends React.Component {
     const { switchLanguage } = this.props;
     return (
       <React.Fragment>
-        <Header switchLanguage={switchLanguage} language={language} />
+        <Header switchLanguage={switchLanguage} language={language} func={{ search: this.search, installerLang: this.installerLang }} />
         <CountriesList>
           {countries.length === 0 ? "Data is loading..." : null}
           {countries.map((country, index) => {
-            return (
-              <Link to={"/country/" + country.codeISO2} key={index}>
-                <CountryCard imageURL={country.coverURL} name={country.name} capital={country.capital} codeISO2={country.codeISO2} />
-              </Link>
-            );
+            if (country.hidden !== true) {
+              return (
+                <Link to={"/country/" + country.codeISO2} key={index}>
+                  <CountryCard imageURL={country.coverURL} name={country.name} capital={country.capital} codeISO2={country.codeISO2} />
+                </Link>
+              );
+            }
           })}
         </CountriesList>
 
