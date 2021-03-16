@@ -17,11 +17,11 @@ class AuthProvider extends Component {
     scope: "openid",
   });
   authorize = () => {
-    this.auth0.authorize();
-    /*this.setState({
-            isAutorized: true
-        })
-        console.log("ccccc", this.state);*/
+
+  };
+  logOut = () => {
+    this.auth0.logout();
+
   };
   handleAuth = () => {
     this.auth0.parseHash((err, authResult) => {
@@ -31,7 +31,6 @@ class AuthProvider extends Component {
             isAutorized: true,
           },
           () => {
-            console.log("ddddd", this.props);
             this.props.history.push("/home");
           }
         );
@@ -43,7 +42,7 @@ class AuthProvider extends Component {
   render() {
     const { isAutorized } = this.state;
     return (
-      <Provider value={{ isAutorized, authorize: this.authorize , handleAuth: this.handleAuth }}>
+      <Provider value={{ isAutorized, authorize: this.authorize , handleAuth: this.handleAuth , logOut: this.logOut}}>
         {this.props.children}
       </Provider>
     );

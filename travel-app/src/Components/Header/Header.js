@@ -28,7 +28,7 @@ class Header extends React.PureComponent {
     // const { lang = 0, value = '', home = true, func: { search, installerLang  }} = props;
     // ниже две строчки для проверки при работе раскоментируем весь пропс (строчка выше) а ниже три строки сотрем
     console.log("props", this.props);
-    const { switchLanguage, func, authorize } = this.props;
+    const { switchLanguage, func, authorize, logOut} = this.props;
     let { language = "en" /*, searchText = "" */ } = this.props;
     const { location } = this.props;
     return (
@@ -46,6 +46,7 @@ class Header extends React.PureComponent {
           />
         ) : null}
         <button className = {s.authButton} onClick = {authorize} >Авторизоваться</button>
+        <button className = {s.authButton} onClick = {logOut} >Выйти</button>
         <select className={s.select} onChange={switchLanguage} value={language}>
           {this.languages.map((item, index) => (
             <option value={item.code} key={index}>
