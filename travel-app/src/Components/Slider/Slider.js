@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import s from './Slider.module.scss';
 import cn from 'classnames';
 
+import Rating from "../../Components/Rating/Rating.js";
+
 class Slider extends Component {
     constructor(props) {
         super(props)
@@ -14,10 +16,6 @@ class Slider extends Component {
 
         this.handlerCardList = this.handlerCardList.bind(this);
     }
-
-    // static getDerivedStateFromProps(nextProps, prevState) {
-        
-    // }
     
     initCardList( arr, quantity ) {
         arr.forEach( (item, index) => {
@@ -64,7 +62,7 @@ class Slider extends Component {
                             <div className={s.card} key={index}>
                                 <p className={cn(s.title, s.cut_title)}>{ item.title }</p>
                                 <div className={s.img} style={{ backgroundImage: `url(${item.imageURL})` }} />
-                                {/* <Rating/> */}
+                                <Rating rating={ /* item.rating */ 3.5}/>
                                 <p className={cn(s.description, s.cut)}>{ item.description }</p>
                             </div>
                         ) } else { return null }
@@ -77,14 +75,3 @@ class Slider extends Component {
 }
 
 export default Slider;
-
-// attractions: [
-//     {
-//     title: "Мост Золотые Ворота",
-//     description: "Мост Золотые Ворота - это подвесной мост через Золотые Ворота, пролив шириной 1,6 км, соединяющий залив Сан-Франциско и Тихий океан.",
-//     imageURL: "https://gpxies.ru/team43/usa/attractions/1_Golden-Gate-Bridge.jpg",
-//     rating: "0",
-//     votes: [
-//     ""
-//     ]
-//     },

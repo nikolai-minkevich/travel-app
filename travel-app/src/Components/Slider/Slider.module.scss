@@ -81,7 +81,15 @@
             .description {
                 width: 90%;
                 overflow: hidden;
+                text-align: center;
             }
+        }
+
+        .card:hover {
+            flex-basis: 33%;
+            height: 95%;
+            margin: 0 10px;
+            transition: 0.3s;
         }
     }
 }
