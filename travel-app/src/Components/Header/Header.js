@@ -27,7 +27,7 @@ class Header extends React.PureComponent {
     // const { lang = 0, value = '', home = true, func: { search, installerLang  }} = props;
     // ниже две строчки для проверки при работе раскоментируем весь пропс (строчка выше) а ниже три строки сотрем
     const { switchLanguage, func } = this.props;
-    let { language = "en", searchText = "" } = this.props;
+    let { language = "en" /*, searchText = "" */ } = this.props;
     const { location } = this.props;
     return (
       <header className={s.header}>
