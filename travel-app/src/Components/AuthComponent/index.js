@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import auth0 from "auth0-js";
 
+
+
 const { Provider, Consumer: AuthConsumer } = React.createContext({
   isAutorized: false,
 });
@@ -17,15 +19,23 @@ class AuthProvider extends Component {
     scope: "openid",
   });
   authorize = () => {
-
+    this.auth0.authorize();
   };
   logOut = () => {
-    this.auth0.logout();
-
+    this.auth0.logout({returnTo:"http://localhost:3000/home"});
+    this.setState(
+        {
+          isAutorized: false,
+        }/*,
+        () => {
+          this.props.history.push("/home");
+        }*/
+      );
   };
   handleAuth = () => {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken) {
+          
         this.setState(
           {
             isAutorized: true,
@@ -39,10 +49,13 @@ class AuthProvider extends Component {
       }
     });
   };
+  handlelogOut =  ()=> {
+
+  };
   render() {
     const { isAutorized } = this.state;
     return (
-      <Provider value={{ isAutorized, authorize: this.authorize , handleAuth: this.handleAuth , logOut: this.logOut}}>
+      <Provider value={{ isAutorized, authorize: this.authorize , handleAuth: this.handleAuth , logOut: this.logOut, handlelogOut:this.handlelogOut}}>
         {this.props.children}
       </Provider>
     );

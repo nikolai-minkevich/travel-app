@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import s from "./Header.module.scss";
-import compose from "../../Utils/compose.js";
-import { withAuth} from "../../Components/AuthComponent/index.js"
+
+import LoginButtons from "../LogInButtons/index.js";
+
 class Header extends React.PureComponent {
   constructor() {
     super();
@@ -28,7 +29,7 @@ class Header extends React.PureComponent {
     // const { lang = 0, value = '', home = true, func: { search, installerLang  }} = props;
     // ниже две строчки для проверки при работе раскоментируем весь пропс (строчка выше) а ниже три строки сотрем
     console.log("props", this.props);
-    const { switchLanguage, func, authorize, logOut} = this.props;
+    const { switchLanguage, func} = this.props;
     let { language = "en" /*, searchText = "" */ } = this.props;
     const { location } = this.props;
     return (
@@ -45,8 +46,7 @@ class Header extends React.PureComponent {
             placeholder="Осуществи мечту! Начни с поиска!"
           />
         ) : null}
-        <button className = {s.authButton} onClick = {authorize} >Авторизоваться</button>
-        <button className = {s.authButton} onClick = {logOut} >Выйти</button>
+        <LoginButtons/>
         <select className={s.select} onChange={switchLanguage} value={language}>
           {this.languages.map((item, index) => (
             <option value={item.code} key={index}>
@@ -59,4 +59,4 @@ class Header extends React.PureComponent {
     );
   }
 }
-export default compose(withRouter, withAuth)(Header);
+export default withRouter(Header);
