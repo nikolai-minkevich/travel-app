@@ -28,7 +28,6 @@ class Header extends React.PureComponent {
   render() {
     // const { lang = 0, value = '', home = true, func: { search, installerLang  }} = props;
     // ниже две строчки для проверки при работе раскоментируем весь пропс (строчка выше) а ниже три строки сотрем
-    console.log("props", this.props);
     const { switchLanguage, func} = this.props;
     let { language = "en" /*, searchText = "" */ } = this.props;
     const { location } = this.props;
@@ -37,7 +36,6 @@ class Header extends React.PureComponent {
         <Link to="/home">
           <p className={s.text}>Travel-APP</p>
         </Link>
-
         {location.pathname.substring(0, 5) === "/home" ? (
           <input
             className={s.input}

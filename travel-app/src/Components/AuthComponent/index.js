@@ -26,10 +26,7 @@ class AuthProvider extends Component {
     this.setState(
         {
           isAutorized: false,
-        }/*,
-        () => {
-          this.props.history.push("/home");
-        }*/
+        }
       );
   };
   handleAuth = () => {
@@ -45,13 +42,18 @@ class AuthProvider extends Component {
           }
         );
       } else if (err) {
-        console.log(err);
+        this.setState(
+            {
+              isAutorized: false,
+            },
+            () => {
+              this.props.history.push("/home");
+            }
+          );
       }
     });
   };
-  handlelogOut =  ()=> {
 
-  };
   render() {
     const { isAutorized } = this.state;
     return (

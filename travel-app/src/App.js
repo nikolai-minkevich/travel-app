@@ -1,7 +1,7 @@
 import React from "react";
 import HomePage from "./Pages/HomePage/index.js";
 import CountryPage from "./Pages/CountryPage/index.js";
-import { BrowserRouter, Route, Switch, Redirect, withRouter } from "react-router-dom";
+import {  Route, Switch, Redirect, withRouter } from "react-router-dom";
 import { LanguageSwitcher } from "./Utils/LanguageSwitcher.js";
 import { AuthProvider} from "./Components/AuthComponent/index.js";
 import AuthPage from "./Pages/AuthPage/index.js"
@@ -24,7 +24,7 @@ class App extends React.PureComponent {
 
   render() {
     const { history } = this.props;
-    console.log("history",history);
+
     const { language } = this.state;
     return (
       
