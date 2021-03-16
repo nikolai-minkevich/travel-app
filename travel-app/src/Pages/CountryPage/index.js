@@ -8,6 +8,8 @@ import CountryVideo from "../../Components/CountryVideo/CountryVideo";
 import { withRouter } from "react-router";
 import CountryWidget from "../../Components/CountryWidget/CountryWidget";
 
+import Slider from "../../Components/Slider/Slider.js";
+
 class CountryPage extends React.Component {
   constructor() {
     super();
@@ -45,7 +47,7 @@ class CountryPage extends React.Component {
   };
   render() {
     const { countryData, language } = this.state;
-    const { videoURL, capital /*capitalCoordinates, attractions*/ } = countryData;
+    const { videoURL, capital, /*capitalCoordinates, */ attractions } = countryData;
 
     const { switchLanguage } = this.props;
 
@@ -57,6 +59,7 @@ class CountryPage extends React.Component {
           {countryData ? <CountryInfoBlock countryData={countryData} /> : null}
           {capital ? <CountryWidget countryCapital={capital} /> : null}
           {videoURL ? <CountryVideo countryVideoUrl={videoURL} /> : null}
+          { attractions ? <Slider attractions={ attractions } /> : null }
         </div>
         <Footer />
       </React.Fragment>
