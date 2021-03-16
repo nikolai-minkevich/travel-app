@@ -6,16 +6,19 @@ class Slider extends Component {
     constructor(props) {
         super(props)
 
-        this.attractions = props.attractions;
         this.cardQuantity = 3;
 
         this.state = {
-            cardList: this.initCardList(this.attractions, this.cardQuantity),
+            cardList: this.initCardList(props.attractions, this.cardQuantity),
         }
 
         this.handlerCardList = this.handlerCardList.bind(this);
     }
 
+    // static getDerivedStateFromProps(nextProps, prevState) {
+        
+    // }
+    
     initCardList( arr, quantity ) {
         arr.forEach( (item, index) => {
             index < quantity ? item.displayed = true : item.displayed = false;
@@ -85,25 +88,3 @@ export default Slider;
 //     ""
 //     ]
 //     },
-
-// handlerCardList(event) {
-//     const vector = event.target.dataset.vektor;
-//     const arr = this.state.cardList.concat();
-//     const mask = [];
-//     arr.forEach( (item, index) => item.displayed ? mask.push(index) : null );
-//     const maskNew = mask.map( item => {
-//         let itemNew;
-//         if (vector === 'left' && !item) itemNew = arr.length - 1;
-//         if (vector === 'left' && item) itemNew = item - 1;
-//         if (vector === 'right' && item < arr.length - 1) itemNew = item + 1;
-//         if (vector === 'right' && item === arr.length - 1) itemNew = 0;
-//         return itemNew
-//     })
-//     arr.forEach( (item, index) => {
-//         maskNew.includes(index) ? item.displayed = true : item.displayed = false;
-//     } );
-
-//     this.setState({ cardList: arr});
-
-//     console.log(maskNew)
-// }
