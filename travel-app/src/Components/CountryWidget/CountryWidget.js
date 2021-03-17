@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./style.module.scss";
+import s from "./CountryWidget.module.scss";
 import WeatherAPI from "../../Utils/WeatherAPI.js";
 import CountryTimer from "../CountryTimer/CountryTimer.js";
 import CountryCurrency from "../CountryCurrency/CountryCurrency.js"

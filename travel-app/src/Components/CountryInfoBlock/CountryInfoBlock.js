@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./style.module.scss";
+import s from "./CountryInfoBlock.module.scss";
 
 class CountryInfoBlock extends React.PureComponent {
   render() {
