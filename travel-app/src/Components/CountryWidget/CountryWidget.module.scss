@@ -1,0 +1,30 @@
+@import "../extends.scss";
+
+
+.countryWidget_container{
+  align-self: flex-start;
+  height: 200px;
+  width: 20%;
+  background-color: $colorBackground__light;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 25px;
+  justify-content: space-between;
+  border-radius: 15px;
+}
+.weather_icon{
+  font-size: 30px;
+}
+
+@media (max-width: 992px) {
+  .countryWidget_container{
+    height: 280px;
+    width: 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  .countryWidget_container{
+    width: 35%;
+  }
+}

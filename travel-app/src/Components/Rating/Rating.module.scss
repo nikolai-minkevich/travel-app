@@ -1,0 +1,30 @@
+@import "../extends.scss";
+
+.box {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .starsTransparent {
+        height: 20px;
+        width: 109px;
+        background-image: url('./img/star2.png');
+        background-size: 109px 20px;
+    }
+
+    p {
+        margin-left: 5px;
+        font-size: 15px;    
+        font-weight: 700;
+    }
+
+    .starsFill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 20px;        
+        background-image: url('./img/star1.png');
+        background-size: 109px 20px;
+    }
+}

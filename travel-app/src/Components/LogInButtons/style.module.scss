@@ -1,0 +1,13 @@
+@import "../extends.scss";
+.authButton{
+  font-size: 20px;
+  cursor: pointer;
+  background: $colorBackground__dark;
+  color: $colorBackground_textForDark;
+  outline: none;
+  border: 2px solid $colorBackground_textForDark;
+  border-radius: 10px;
+  padding: 3px 10px;
+  margin-right: 10px;
+}
+
