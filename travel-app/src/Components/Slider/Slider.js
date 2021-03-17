@@ -49,12 +49,14 @@ class Slider extends Component {
     }
 
     startFullscreen = event => {
-        const index = event.target.closest('.data-index').dataset.index;
-        const arr = this.state.attractions;
-        const mask = [ Number(index) ];
-        const { left, right } = this.activeBtn(mask, arr);
-        document.getElementById("slider__64bit").webkitRequestFullScreen();
-        this.setState({ mask, left, right, fullscreen: true });
+        if(event.target.tagName!="SELECT"){
+            const index = event.target.closest('.data-index').dataset.index;
+            const arr = this.state.attractions;
+            const mask = [ Number(index) ];
+            const { left, right } = this.activeBtn(mask, arr);
+            document.getElementById("slider__64bit").webkitRequestFullScreen();
+            this.setState({ mask, left, right, fullscreen: true });
+        }
     }
 
     stopFullscreen = () => {
@@ -98,9 +100,18 @@ class Slider extends Component {
                                 <div className={`${s.card} data-index`} onClick={this.startFullscreen} data-index={index} /* key={index} */>
                                     <p className={cn(s.title, s.cut_title)}>{ item.title }</p>
                                     <div className={s.img} style={{ backgroundImage: `url(${item.imageURL})` }}/>
+                                    <div className={s.rating_container}>
                                     { fullscreen ? 
                                         <Rating rating={ /* item.rating */ 3.5 } onClick={() => {}} cursor={{ cursor: "pointer" }}/> :
                                         <Rating rating={ /* item.rating */ 3.5 }/> }
+                                    <select>
+                                        <option> 1 </option>
+                                        <option> 2 </option>
+                                        <option> 3 </option>
+                                        <option> 4 </option>
+                                        <option> 5 </option>
+                                    </select>
+                                    </div>
                                     <p className={cn(s.description, s.cut)}>{ item.description }</p>
                                 </div>
                             </CSSTransition>
