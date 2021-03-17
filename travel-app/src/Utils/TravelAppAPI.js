@@ -1,6 +1,7 @@
 class TravelAppAPI {
   constructor() {
     this.API_SERVER = "https://travelapp-team43.herokuapp.com";
+    // this.API_SERVER = "http://localhost:3333";
   }
   async getCountries(lang = "en") {
     return fetch(this.API_SERVER + "/countries?lang=" + lang, {
@@ -43,7 +44,7 @@ class TravelAppAPI {
       body: JSON.stringify({
         changedAttrId: changedAttrId,
         changedAttrRating: changedAttrRating,
-        userEmail: userEmail,
+        userEmail: userEmail
       }),
     })
       .then((response) => {

@@ -9,12 +9,9 @@ import Rating from "../../Components/Rating/Rating.js";
 import TravelAppAPI from "../../Utils/TravelAppAPI";
 
 class Slider extends Component {
-
-
-
   constructor(props) {
     super(props);
-    this.travelAppAPI = new TravelAppAPI() ;
+    this.travelAppAPI = new TravelAppAPI();
     this.state = {
       attractions: props.attractions,
       mask: [0, 1, 2],
@@ -51,16 +48,29 @@ class Slider extends Component {
     const { left, right } = this.activeBtn(mask, arr);
     this.setState({ mask, left, right });
   };
-  handlerChangeRating = (event) => {
-    console.log("its work", event.target.value);
-    let changedAttrId = event.target.dataset
-    let changedAttrRating = event.target.value
-    let userEmail
-    if(localStorage.getItem("travelApp43_UserEmail")){userEmail =localStorage.getItem("travelApp43_UserEmail")}
-    this.travelAppAPI.setRating(changedAttrId,changedAttrRating,userEmail)
+  handlerChangeRating = async (event) => {
+    let changedAttrId = event.target.dataset["id"];
+    let changedAttrRating = event.target.value;
+    let userEmail;
+    if (localStorage.getItem("travelApp43_UserEmail")) {
+      userEmail = localStorage.getItem("travelApp43_UserEmail");
+    } else {
+      return;
+    }
+    const resp = await this.travelAppAPI.setRating(changedAttrId, changedAttrRating, userEmail);
+    console.log(resp);
+    let newAttractions = this.state.attractions.map((attraction) => {
+      if (attraction._id === resp.id) {
+        attraction.votes = resp.votes;
+      }
+      return attraction;
+    });
+    this.setState({
+      attraction: newAttractions,
+    });
   };
   startFullscreen = (event) => {
-    if (event.target.tagName != "SELECT") {
+    if (event.target.tagName !== "SELECT") {
       const index = event.target.closest(".data-index").dataset.index;
       const arr = this.state.attractions;
       const mask = [Number(index)];
@@ -78,8 +88,7 @@ class Slider extends Component {
       if (index === 0) {
         for (let i = 0; i < this.state.maskLength; i++) mask[i] = i;
       } else if (index === arr.length - 1) {
-        for (let i = 0; i < this.state.maskLength; i++)
-          mask[i] = i + arr.length - this.state.maskLength;
+        for (let i = 0; i < this.state.maskLength; i++) mask[i] = i + arr.length - this.state.maskLength;
       } else {
         for (let i = 0; i < this.state.maskLength; i++) mask[i] = i + index - 1;
       }
@@ -92,7 +101,19 @@ class Slider extends Component {
     this.initBtn();
     document.addEventListener("webkitfullscreenchange", this.stopFullscreen);
   }
-
+  calculateRating(attraction) {
+    let voters = [];
+    let rating = 0;
+    attraction.votes.map((vote) => {
+      if (vote.user !== undefined && vote.rate !== undefined) {
+        voters.push(vote.user);
+        rating += parseFloat(vote.rate);
+      }
+      return vote;
+    });
+    attraction.rating = rating;
+    attraction.voters = voters;
+  }
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.attractions !== prevState.attractions) {
       return { attractions: nextProps.attractions };
@@ -105,48 +126,31 @@ class Slider extends Component {
     const { attractions, mask, left, right, fullscreen } = this.state;
 
     return (
-      <section
-        className={cn(s.slider, fullscreen ? s.fullscreen : null)}
-        id="slider__64bit"
-      >
-        <div
-          className={cn(s.left, left ? null : s.disabled)}
-          onClick={this.handlerCardList}
-          data-vektor="left"
-        >
+      <section className={cn(s.slider, fullscreen ? s.fullscreen : null)} id="slider__64bit">
+        <div className={cn(s.left, left ? null : s.disabled)} onClick={this.handlerCardList} data-vektor="left">
           &#9668;
         </div>
         <TransitionGroup component={"div"} className={s.cardList}>
           {attractions.map((item, index) => {
-              console.log("item", item._id);
+            console.log("item", item._id);
             if (mask.includes(index)) {
+              if (item.votes.length > 0) {
+                this.calculateRating(item);
+              }
               return (
                 <CSSTransition classNames="anime" timeout={250} key={index}>
-                  <div
-                    className={`${s.card} data-index`}
-                    onClick={this.startFullscreen}
-                    data-index={index} /* key={index} */
-                  >
+                  <div className={`${s.card} data-index`} onClick={this.startFullscreen} data-index={index} /* key={index} */>
                     <p className={cn(s.title, s.cut_title)}>{item.title}</p>
-                    <div
-                      className={s.img}
-                      style={{ backgroundImage: `url(${item.imageURL})` }}
-                    />
+                    <div className={s.img} style={{ backgroundImage: `url(${item.imageURL})` }} />
                     <div className={s.rating_container}>
                       {fullscreen ? (
-                        <Rating
-                          rating={item.rating}
-                          onClick={() => {}}
-                          cursor={{ cursor: "pointer" }}
-                        />
+                        <Rating rating={item.rating} voters={item.voters} onClick={() => {}} cursor={{ cursor: "pointer" }} />
                       ) : (
-                        <Rating rating={item.rating} />
+                        <Rating rating={item.rating} voters={item.voters} />
                       )}
-                      <RatingSelect handlerChangeRating={this.handlerChangeRating} id={item._id}/>
+                      <RatingSelect handlerChangeRating={this.handlerChangeRating} id={item._id} />
                     </div>
-                    <p className={cn(s.description, s.cut)}>
-                      {item.description}
-                    </p>
+                    <p className={cn(s.description, s.cut)}>{item.description}</p>
                   </div>
                 </CSSTransition>
               );
@@ -155,11 +159,7 @@ class Slider extends Component {
             }
           })}
         </TransitionGroup>
-        <div
-          className={cn(s.right, right ? null : s.disabled)}
-          onClick={this.handlerCardList}
-          data-vektor="right"
-        >
+        <div className={cn(s.right, right ? null : s.disabled)} onClick={this.handlerCardList} data-vektor="right">
           &#9658;
         </div>
       </section>
