@@ -95,6 +95,13 @@
         text-align: center;
         font-size: 15px;
     }
+    .rating_container{
+        display: flex;
+        align-items: center;
+        select{
+            margin-left: 5px;
+        }
+    }
 }
 .card:hover {
     flex-basis: 30%;
