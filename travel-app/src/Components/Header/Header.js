@@ -46,7 +46,7 @@ class Header extends React.PureComponent {
             className={s.input}
             onChange={func.search}
             type="text"
-            placeholder="Осуществи мечту! Начни с поиска!"
+            placeholder="Осуществи мечту! Начни с поиска!"//
             ref={inputRef => this.inputRef = inputRef}
           />
         ) : null}
