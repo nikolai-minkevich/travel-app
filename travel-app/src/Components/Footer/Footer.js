@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Footer.module.scss';
 
-import git from '../../git.jpg';
-import rs from '../../logo.png';
+import git from './img/git.jpg';
+import rs from './img/logo.png';
 
 const Footer = () => (
     <footer className={s.footer}>

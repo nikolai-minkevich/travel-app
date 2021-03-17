@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import cn from 'classnames';
 
 import s from './Slider.module.scss';
+import './style.css';
 
 import Rating from "../../Components/Rating/Rating.js";
 
@@ -89,20 +91,22 @@ class Slider extends Component {
         return (
             <section className={cn(s.slider, fullscreen ? s.fullscreen : null)} id='slider__64bit'>
                 <div className={cn(s.left, left ? null : s.disabled)} onClick={this.handlerCardList} data-vektor="left">&#9668;</div>
-                <div className={s.cardList}>
+                <TransitionGroup component={'div'} className={s.cardList}>
                     { attractions.map( (item, index) => {
                         if (mask.includes(index)) { return (
-                            <div className={`${s.card} data-index`} onClick={this.startFullscreen} data-index={index} key={index}>
-                                <p className={cn(s.title, s.cut_title)}>{ item.title }</p>
-                                <div className={s.img} style={{ backgroundImage: `url(${item.imageURL})` }}/>
-                                { fullscreen ? 
-                                    <Rating rating={ /* item.rating */ 3.5 } onClick={() => {}} cursor={{ cursor: "pointer" }}/> :
-                                    <Rating rating={ /* item.rating */ 3.5 }/> }
-                                <p className={cn(s.description, s.cut)}>{ item.description }</p>
-                            </div>
+                            <CSSTransition classNames='anime' timeout={250} key={index}>
+                                <div className={`${s.card} data-index`} onClick={this.startFullscreen} data-index={index} /* key={index} */>
+                                    <p className={cn(s.title, s.cut_title)}>{ item.title }</p>
+                                    <div className={s.img} style={{ backgroundImage: `url(${item.imageURL})` }}/>
+                                    { fullscreen ? 
+                                        <Rating rating={ /* item.rating */ 3.5 } onClick={() => {}} cursor={{ cursor: "pointer" }}/> :
+                                        <Rating rating={ /* item.rating */ 3.5 }/> }
+                                    <p className={cn(s.description, s.cut)}>{ item.description }</p>
+                                </div>
+                            </CSSTransition>
                         ) } else { return null }
                     } ) }
-                </div>
+                </TransitionGroup>
                 <div className={cn(s.right, right ? null : s.disabled)} onClick={this.handlerCardList} data-vektor="right">&#9658;</div>
             </section>
         )
