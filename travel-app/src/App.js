@@ -6,7 +6,7 @@ import { LanguageSwitcher } from "./Utils/LanguageSwitcher.js";
 
 import { Auth0Provider } from "@auth0/auth0-react";
 import AuthPage from "./Pages/AuthPage/index.js";
-
+//import { useAuth0 } from "@auth0/auth0-react";
 class App extends React.PureComponent {
   constructor() {
     super();
@@ -22,7 +22,12 @@ class App extends React.PureComponent {
       language: this.languageSwitcher.get(),
     });
   };
-
+/*componentDidMount(){
+  const {
+    loginWithRedirect
+  } = useAuth0();
+  loginWithRedirect()
+}*/
   render() {
     const { history } = this.props;
 
