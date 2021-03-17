@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.module.scss";
+import "./CountryVideo.module.scss";
 
 class CountryVideo extends React.PureComponent {
   render() {

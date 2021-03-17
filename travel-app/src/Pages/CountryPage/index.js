@@ -32,6 +32,7 @@ class CountryPage extends React.Component {
     const { codeISO2 } = this.props.match.params;
     const { language } = this.props;
     this.loadData(codeISO2, language);
+    window.scrollTo(0, 0);
   }
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.language !== prevState.language) {
