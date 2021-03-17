@@ -4,7 +4,7 @@
     user-select: none;
     margin: 0;
     width: 100%;
-    height: 250px;
+    height: 280px;
     background-color: $colorBackground__slider;
     display: flex;
     align-items: center;
@@ -43,6 +43,13 @@
         padding-left: 12px;
         margin-right: 15px;
     }
+    .disabled,
+    .disabled:hover {
+        cursor: default;
+        border: 2px solid $colorBackground_textForDark;
+        background: $colorBackground__slider__card;
+        color: $colorBackground_textForDark;
+    }
 
     .cardList {
         width: 100%;
@@ -54,19 +61,19 @@
         .card {
             cursor: pointer;
             background-color: $colorBackground__slider__card;
-            flex-basis: 32%;
+            flex-basis: 29%;
             height: 90%;
             margin: 0 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
-            border-radius: 10px;
+            border-radius: 10px;            
 
             .title {
                 text-align: center;
                 width: 100%;
-                font-size: 14px;
+                font-size: 16px;
                 font-weight: 700;
                 overflow:hidden;
                 text-overflow: ellipsis;
@@ -82,26 +89,66 @@
                 width: 90%;
                 overflow: hidden;
                 text-align: center;
+                font-size: 15px;
             }
         }
 
         .card:hover {
-            flex-basis: 33%;
+            flex-basis: 30%;
             height: 95%;
             margin: 0 10px;
             transition: 0.3s;
-        }
+        }        
+    }
+
+    .cut {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    
+    .cut_title {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
 }
 
-.cut {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
+.fullscreen {
+    .cardList {
+        flex-basis: 88%;
 
-.cut_title {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+        .card {
+            cursor: default;
+            width: 95%;
+            height: 85%;
+            flex-basis: auto;
+            justify-content: space-between;
+            padding: 10px 0;
+
+            .img {
+                order: 1;
+            }
+
+            .title {
+                order: 2;
+                font-size: 30px;
+            }
+
+            .description {
+                order: 3;
+                font-size: 20px;
+            }
+        }
+
+        .card:hover {
+            flex-basis: auto;
+            height: 85%;
+            margin: 0 15px;
+        }
+    }
+
+    .cut {
+        -webkit-line-clamp: 10;
+    }
 }
