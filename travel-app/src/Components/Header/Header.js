@@ -16,19 +16,16 @@ class Header extends React.PureComponent {
 
   componentDidMount() {
     this.value = this.props.value;
+
+    const { location } = this.props;
+    if (location.pathname.substring(0, 5) === "/home") {
+      this.inputRef.focus();
+    }
   }
 
-  //   installerLang = (event) => console.log(event.target.value);
-  //   search = (event) => {
-  //     this.value += event.target.value;
-  //   };
 
-  // lang должен иметь значение 0, 1, 2 в соответствии с language
-  // значения lang приведены в соответствие с БД
   render() {
-    // const { lang = 0, value = '', home = true, func: { search, installerLang  }} = props;
-    // ниже две строчки для проверки при работе раскоментируем весь пропс (строчка выше) а ниже три строки сотрем
-    const { switchLanguage, func} = this.props;
+    const { switchLanguage, func } = this.props;
     let { language = "en" /*, searchText = "" */ } = this.props;
     const { location } = this.props;
     return (
@@ -41,18 +38,25 @@ class Header extends React.PureComponent {
             className={s.input}
             onChange={func.search}
             type="text"
-            placeholder="Осуществи мечту! Начни с поиска!"
+            placeholder={
+              language === "ru"
+                ? "Осуществи мечту! Начни с поиска!"
+                : language === "en"
+                ? "Make your dream come true! Start by searching!"
+                : "Réalise tes rêves! Commencez par chercher!"
+            }
+            ref={(inputRef) => (this.inputRef = inputRef)}
           />
         ) : null}
         <div className={s.buttons}>
-        <LoginButtons/>
-        <select className={s.select} onChange={switchLanguage} value={language}>
-          {this.languages.map((item, index) => (
-            <option value={item.code} key={index}>
-              {item.title}
-            </option>
-          ))}
-        </select>
+          <LoginButtons language={language}/>
+          <select className={s.select} onChange={switchLanguage} value={language}>
+            {this.languages.map((item, index) => (
+              <option value={item.code} key={index}>
+                {item.title}
+              </option>
+            ))}
+          </select>
         </div>
       </header>
     );
