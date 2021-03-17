@@ -61,7 +61,14 @@ class HomePage extends React.Component {
       <React.Fragment>
         <Header switchLanguage={switchLanguage} language={language} func={{ search: this.search, installerLang: this.installerLang }} />
         <CountriesList>
-          {countries.length === 0 ? "Data is loading..." : null}
+          {countries.length === 0
+            ? language === "ru"
+              ? "Данные загружаются"
+              : language === "en"
+              ? "Data is loading"
+              : "Les données sont en cours de chargement"
+            : null}
+
           {countries.map((country, index) => {
             if (country.hidden !== true) {
               return (
