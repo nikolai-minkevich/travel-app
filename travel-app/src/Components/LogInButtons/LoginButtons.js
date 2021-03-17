@@ -19,6 +19,7 @@ const LogoutButton = (props) => {
     </button>
   );
 };
+
 const LoginButtons = (props) => {
   const { user, isAuthenticated } = useAuth0();
   if (user) {
@@ -26,4 +27,5 @@ const LoginButtons = (props) => {
   }
   return <>{isAuthenticated ? <LogoutButton language={props.language} /> : <LoginButton language={props.language} />}</>;
 };
+
 export default LoginButtons;
