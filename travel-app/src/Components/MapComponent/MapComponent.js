@@ -61,7 +61,7 @@ setTimeout(
           // Подключаем модули регионов и ObjectManager
           modules={["borders", "ObjectManager"]}
 
-          // style={{width: "100%", height: "100%"}}
+          style={{width: "100%", height: "100%"}}
         >
           <Placemark geometry={props.capitalCoordinates} />
         </Map>
