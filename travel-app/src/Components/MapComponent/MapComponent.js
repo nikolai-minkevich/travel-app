@@ -1,6 +1,8 @@
 import React from "react";
 import { YMaps, Map, Placemark } from "react-yandex-maps";
 
+import s from './MapComponent.module.scss';
+
 const COLOR = "#FF0000";
 
 function MapComponent(props) {
@@ -41,7 +43,7 @@ function MapComponent(props) {
   };
 
   return (
-    <div className="App">
+    <div className={s.App}>
       <YMaps>
         <Map
           // Создаем ссылку на инстанс мапа, чтобы использовать его
@@ -51,6 +53,8 @@ function MapComponent(props) {
           onLoad={(ymaps) => getRegions(ymaps)}
           // Подключаем модули регионов и ObjectManager
           modules={["borders", "ObjectManager"]}
+
+          style={{width: "100%", height: "100%"}}
         >
           <Placemark geometry={props.capitalCoordinates} />
         </Map>
