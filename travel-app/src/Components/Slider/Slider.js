@@ -58,16 +58,17 @@ class Slider extends Component {
       return;
     }
     const resp = await this.travelAppAPI.setRating(changedAttrId, changedAttrRating, userEmail);
-    console.log(resp);
-    let newAttractions = this.state.attractions.map((attraction) => {
-      if (attraction._id === resp.id) {
-        attraction.votes = resp.votes;
-      }
-      return attraction;
-    });
-    this.setState({
-      attraction: newAttractions,
-    });
+    if (resp) {
+      let newAttractions = this.state.attractions.map((attraction) => {
+        if (attraction._id === resp.id) {
+          attraction.votes = resp.votes;
+        }
+        return attraction;
+      });
+      this.setState({
+        attraction: newAttractions,
+      });
+    }
   };
   startFullscreen = (event) => {
     if (event.target.tagName !== "SELECT") {
@@ -132,7 +133,6 @@ class Slider extends Component {
         </div>
         <TransitionGroup component={"div"} className={s.cardList}>
           {attractions.map((item, index) => {
-            console.log("item", item._id);
             if (mask.includes(index)) {
               if (item.votes.length > 0) {
                 this.calculateRating(item);

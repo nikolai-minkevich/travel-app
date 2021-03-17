@@ -4,11 +4,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const LoginButton = () => {
   const {
-    loginWithRedirect,
-    getAccessTokenSilently
+    loginWithRedirect
   } = useAuth0();
-let getAccessTokenSilentlyrr = getAccessTokenSilently()
-console.log("getAccessTokenSilentlyrr",useAuth0());
   return <button className={s.authButton} onClick={() => loginWithRedirect()}>Log In</button>;
 };
 const LogoutButton = () => {
@@ -21,10 +18,8 @@ const LogoutButton = () => {
   );
 };
 const LoginButtons =()=> {
-  console.log("useAuth0 ",useAuth0() );
-    const { user, isAuthenticated, isLoading } = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
     if(user){
-      console.log("useAuth0()",user);
       localStorage.setItem("travelApp43_UserEmail", user.email)
     }
     return (
