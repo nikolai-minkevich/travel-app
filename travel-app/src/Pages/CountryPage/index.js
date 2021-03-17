@@ -68,10 +68,8 @@ class CountryPage extends React.Component {
           {countryData ? <CountryInfoBlock countryData={countryData} /> : null}
           {capital && timeZone && currency? <CountryWidget language={language} timezone={timeZone} countryCapital={capital} currency={currency} /> : null}
           {videoURL ? <CountryVideo countryVideoUrl={videoURL} /> : null}
-          { attractions ? <Slider attractions={ attractions } /> : null }
-          {capitalCoordinates ? (
-            <MapComponent capitalCoordinates={[capitalCoordinates.lat, capitalCoordinates.lon]} language={language} codeISO2={codeISO2} />
-          ) : null}
+          {capitalCoordinates ? <MapComponent capitalCoordinates={[capitalCoordinates.lat, capitalCoordinates.lon]} language={language} codeISO2={codeISO2} /> : null}
+          { attractions ? <Slider attractions={ attractions } /> : null }          
         </div>
         <Footer />
       </React.Fragment>

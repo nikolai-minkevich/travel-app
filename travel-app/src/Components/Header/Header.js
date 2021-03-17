@@ -16,6 +16,11 @@ class Header extends React.PureComponent {
 
   componentDidMount() {
     this.value = this.props.value;
+
+    const { location } = this.props;
+    if (location.pathname.substring(0, 5) === "/home") {
+      this.inputRef.focus()
+    };
   }
 
   //   installerLang = (event) => console.log(event.target.value);
@@ -42,6 +47,7 @@ class Header extends React.PureComponent {
             onChange={func.search}
             type="text"
             placeholder="Осуществи мечту! Начни с поиска!"
+            ref={inputRef => this.inputRef = inputRef}
           />
         ) : null}
         <LoginButtons/>
