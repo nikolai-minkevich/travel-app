@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import s from './Slider.module.scss';
 import cn from 'classnames';
+
+import s from './Slider.module.scss';
 
 import Rating from "../../Components/Rating/Rating.js";
 
