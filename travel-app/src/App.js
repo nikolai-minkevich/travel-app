@@ -3,10 +3,10 @@ import HomePage from "./Pages/HomePage/index.js";
 import CountryPage from "./Pages/CountryPage/index.js";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import { LanguageSwitcher } from "./Utils/LanguageSwitcher.js";
-
+import Auth0ProviderWithHistory from "./Components/Auth/auth0-provider-with-history.js";
 import { Auth0Provider } from "@auth0/auth0-react";
 import AuthPage from "./Pages/AuthPage/index.js";
-
+//import { useAuth0 } from "@auth0/auth0-react";
 class App extends React.PureComponent {
   constructor() {
     super();
@@ -22,7 +22,12 @@ class App extends React.PureComponent {
       language: this.languageSwitcher.get(),
     });
   };
-
+/*componentDidMount(){
+  const {
+    loginWithRedirect
+  } = useAuth0();
+  loginWithRedirect()
+}*/
   render() {
     const { history } = this.props;
 
@@ -31,13 +36,7 @@ class App extends React.PureComponent {
       history.push(appState?.returnTo || "/home");
     };
     return (
-      <Auth0Provider 
- 
-      domain= {process.env.REACT_APP_AUTH0_DOMAIN}
-      clientId= {process.env.REACT_APP_AUTH0_CLIENT_ID}
-      redirectUri={process.env.REACT_APP_AUTH0_CALLBACK_URL}
-      onRedirectCallback={onRedirectCallback}
-      history={history}>
+      <Auth0ProviderWithHistory>
         <Switch>
           <Route
             history={history}
@@ -86,7 +85,7 @@ class App extends React.PureComponent {
           />
           <Redirect from="/" to="/home" />
         </Switch>
-      </Auth0Provider>
+      </Auth0ProviderWithHistory>
     );
   }
 }

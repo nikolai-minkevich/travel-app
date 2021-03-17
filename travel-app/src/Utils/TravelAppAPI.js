@@ -31,5 +31,25 @@ class TravelAppAPI {
       })
       .catch((error) => Error(error));
   }
+
+  async setRating(changedAttrId, changedAttrRating, userEmail) {
+    return fetch(this.API_SERVER + "/attractions/like", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36",
+        Referer: this.API_SERVER,
+      },
+      body: JSON.stringify({
+        changedAttrId: changedAttrId,
+        changedAttrRating: changedAttrRating,
+        userEmail: userEmail
+      }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .catch((error) => Error(error));
+  }
 }
 export default TravelAppAPI;
