@@ -44,6 +44,7 @@ class Header extends React.PureComponent {
             placeholder="Осуществи мечту! Начни с поиска!"
           />
         ) : null}
+        <div className={s.buttons}>
         <LoginButtons/>
         <select className={s.select} onChange={switchLanguage} value={language}>
           {this.languages.map((item, index) => (
@@ -52,7 +53,7 @@ class Header extends React.PureComponent {
             </option>
           ))}
         </select>
-
+        </div>
       </header>
     );
   }

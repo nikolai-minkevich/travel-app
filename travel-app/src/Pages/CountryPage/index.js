@@ -8,11 +8,10 @@ import CountryVideo from "../../Components/CountryVideo/CountryVideo";
 import { withRouter } from "react-router";
 import CountryWidget from "../../Components/CountryWidget/CountryWidget";
 import MapComponent from "../../Components/MapComponent/MapComponent.js";
-import compose from "../../Utils/compose.js";
+
 import Slider from "../../Components/Slider/Slider.js";
 
 
-import { withAuth} from "../../Components/AuthComponent/index.js"
 
 
 
@@ -83,5 +82,5 @@ class CountryPage extends React.Component {
 
 
 
+export default withRouter(CountryPage);
 
-export default compose(withRouter, withAuth)(CountryPage);
