@@ -2,7 +2,9 @@
 
 ## Команда №43
 Nikolai Minkevich @nikolai-minkevich	
+
 Vasenina Nastya @VaseninaNastya	
+
 Anatoliy Manin @AV-63-dev	
 
 ### Pull request
